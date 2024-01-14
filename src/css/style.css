@@ -1,0 +1,468 @@
+/* -------------------------------------------- Start Global Rules --------------------------------------------*/
+
+/* Start Global Variables */
+:root {
+  --black: #212121;
+  --white: #efefef;
+  --pearl: #fff;
+  --purple: #e8d1f6;
+  --blue: #29639c;
+  --green: #00bcd4;
+  --pink: #b73b3b;
+  --bg-green: #00bcd4;
+  --bs-black: #000;
+  --color-border: #e9e6e6;
+  --border-radius: 12px;
+  --main-transition: 0.3s;
+  --main-padding-top: 100px;
+  --main-padding-bottom: 100px;
+  --main-line-height: 1.8;
+}
+/* End Global Variables */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: none;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-color);
+}
+::-webkit-scrollbar {
+  width: 10px;
+  transition: var(--main-transition);
+}
+::-webkit-scrollbar-track {
+  background-color: var(--white);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--green);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #00bbd4d4;
+}
+::selection {
+  background: var(--white);
+  color: var(--black);
+  mix-blend-mode: difference;
+}
+::-moz-selection {
+  background: var(--white);
+  color: var(--black);
+}
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 900;
+}
+h1 {
+  font-size: 3em;
+}
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+/* Start Component */
+
+/* End Component */
+/* --------------------------------------------- Canvas -------------------------------------- */
+
+#page {
+  visibility: hidden;
+}
+#webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1000;
+  outline: none;
+}
+body.loaded #page {
+  visibility: visible;
+}
+
+body.loaded #webgl {
+  opacity: 1;
+}
+
+body.revealed #webgl {
+  display: none;
+}
+/* --------------------------------------------- Cursor -------------------------------------- */
+.custom-cursor {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--green);
+  transition: transform 350ms ease;
+  transform: translate(-50%, -50%) scale(0.3);
+  z-index: 1000;
+}
+
+.custom-cursor--link {
+  transform: translate(-50%, -50%) scale(1.25);
+}
+/* --------------------------------------------- Section 1 -------------------------------------- */
+.hero-title {
+  font-size: 8vw;
+  line-height: 1em;
+  font-weight: 900;
+  mix-blend-mode: difference !important;
+  color: var(--white);
+  position: relative;
+  z-index: 2;
+  text-align: left;
+}
+.nav-title {
+  font-size: 4em;
+  margin-bottom: 3rem;
+  color: white;
+}
+.nav-title span {
+  color: var(--green);
+}
+.bg-topographic {
+  background-image: url('../../Images/4060492.jpg');
+  opacity: 1;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-repeat: no-repeat;
+}
+.sticky-nav {
+  top: 20px;
+  left: 20px;
+  position: fixed;
+  width: calc(100% - 40px);
+  z-index: 501;
+  mix-blend-mode: difference;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sticky-nav .logo {
+  width: 220px;
+  background-image: url('../../Images/alexandria-real-estate-equities-seeklogo.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: left;
+  filter: brightness(3000.4%);
+}
+
+.sticky-nav #nav-btn {
+  width: 60px;
+  z-index: 999;
+}
+
+.sticky-nav #nav-btn .icon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: var(--white);
+}
+
+#takeover-nav {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  left: 0;
+  top: -200%;
+  transition: all 0.5s ease-in-out;
+  z-index: 500;
+}
+
+#takeover-nav .content {
+  --bs-gutter-x: 1.5rem;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin: auto;
+}
+
+#takeover-nav .content .row {
+  --bs-gutter-x: 1.5rem;
+  display: flex;
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+  height: 100vh;
+}
+#takeover-nav .content .row .col {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+#takeover-nav .content .row .col.nav-contact {
+  justify-content: center;
+  background-color: var(--bs-black);
+  position: relative;
+  order: 0;
+  flex: 1;
+}
+#takeover-nav .content .row .col.nav-menu {
+  background-color: var(--bg-green);
+  order: 1;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#takeover-nav .content .row .col.nav-menu .nav-items li {
+  text-transform: uppercase;
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  #takeover-nav .content .row .col.nav-contact {
+    display: none;
+  }
+}
+
+#takeover-nav.shown {
+  top: 0;
+}
+
+#takeover-nav a {
+  color: var(--white);
+}
+
+#takeover-nav a:hover {
+  color: var(--black);
+}
+
+#takeover-nav .nav-contact .info {
+  max-width: 700px;
+  position: relative;
+  width: 100%;
+  padding-left: 0.75rem;
+  margin: auto;
+}
+
+#takeover-nav .nav-items {
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+#takeover-nav .contact-items {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 3rem;
+}
+#takeover-nav .contact-items li {
+  padding-bottom: 20px;
+}
+
+#takeover-nav .contact-items a:hover {
+  color: var(--green);
+}
+
+#takeover-nav .social {
+  font-size: 0.75em;
+}
+
+#takeover-nav .social a {
+  color: var(--green);
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+#takeover-nav .social span {
+  color: var(--white);
+  margin: 0 1rem;
+}
+
+#takeover-nav .social a:hover {
+  color: var(--white);
+}
+
+.gradient-overlay {
+  bottom: 0;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    rgba(33, 33, 33, 0) 0%,
+    rgba(33, 33, 33, 1) 50%
+  );
+  border-bottom-right-radius: 15vw;
+  pointer-events: none;
+  width: 100%;
+  position: absolute;
+}
+
+.video-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-bottom-right-radius: 15vw;
+  pointer-events: none;
+}
+
+#video-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  background-position: center center;
+  background-size: cover;
+  object-fit: cover;
+  transform: rotate(180deg);
+}
+
+section {
+  min-height: 800px;
+  height: 800px;
+  width: 100%;
+}
+
+section.hero {
+  background-color: var(--black);
+  border-bottom-right-radius: 15vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section.hero::before,
+section.hero::after {
+  content: '';
+  background-color: var(--black);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 15vw;
+  height: 15vw;
+}
+
+section.hero::after {
+  background-color: var(--white);
+  border-top-left-radius: 15vw;
+}
+
+section.hero .content {
+  position: relative;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+@media screen and (min-width: 1200px) {
+  .hero {
+    height: 75vh;
+  }
+  .hero #video-bg {
+    object-position: 0 5vw;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .hero #video-bg {
+    object-position: 0 15vw;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #takeover-nav .nav-menu {
+    min-height: 500px;
+  }
+  #takeover-nav .nav-contact {
+    min-height: 600px;
+  }
+  #takeover-nav .nav-contact .nav-title {
+    font-size: 2.5em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  header .sticky-nav {
+    top: 10px;
+  }
+  header .sticky-nav #nav-btn {
+    width: 40px;
+  }
+  #takeover-nav .contact-items {
+    font-size: 1em;
+  }
+  .hero .hero-title {
+    font-size: 11vw;
+  }
+  .hero #video-bg {
+    object-position: 0 30vw;
+  }
+}
+/* --------------------------------------------- Section 2 -------------------------------------- */
+section.two {
+  background-color: var(--white);
+}
+/* --------------------------------------------- Section 3 -------------------------------------- */
+section.three {
+  background-color: var(--purple);
+}
+/* --------------------------------------------- Section 4 -------------------------------------- */
+section.four {
+  background-color: var(--green);
+}
+/* --------------------------------------------- Section 5 -------------------------------------- */
+section.five {
+  background-color: var(--blue);
+}
+/* --------------------------------------------- Section 6 -------------------------------------- */
+section.six {
+  background-color: var(--bs-black);
+}
