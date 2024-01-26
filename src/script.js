@@ -571,7 +571,7 @@ let itms = 6; // itemsPerPage
 let stpg = 1; // startPage
 let pltd = 4; // pageLinksToDisplay
 let winw = window.innerWidth;
-import bg from "../Images/Waves.jpg";
+import bg from "../static/Images/Waves.jpg";
 
 
 function optionsByWindowSize() {
