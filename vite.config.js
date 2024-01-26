@@ -15,7 +15,15 @@ export default {
     {
         outDir: '../dist',
         emptyOutDir: true,
-        sourcemap: true
+        sourcemap: true,
+        //     rollupOptions: {
+        //         output: {
+        //             manualChunks: {
+        //                 'particles': ['particles.js-master'],
+        //                 'pajinate': ['purePajinate-master'],
+        //             },
+        //         },
+        //     },
     },
     plugins:
         [
