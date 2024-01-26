@@ -151,7 +151,7 @@ var bottomLeftX_1;
 var bottomRightX_1;
 
 // Animation Variables
-var segmentDuration_1 = 10;
+var segmentDuration_1 = 5;
 var menuDisappearDurationInFrames_1 = segmentDuration_1;
 var arrowAppearDurationInFrames_1 = segmentDuration_1;
 var arrowDisappearDurationInFrames_1 = segmentDuration_1;
@@ -300,6 +300,18 @@ icon_1.addEventListener("click", function() {
     menuDisappearComplete_1 = false;
     arrowAppearComplete_1 = false;
   }
+});
+
+// Event listener for menu items
+var menuItems = document.querySelectorAll('.nav-items li');
+menuItems.forEach(function(item) {
+  item.addEventListener('click', function() {
+    closeMenuAnimation_1();
+    document.getElementById('takeover-nav').classList.remove("shown");
+    state_1 = "menu";
+    menuDisappearComplete_1 = false;
+    arrowAppearComplete_1 = false;
+  });
 });
 
 // Cursor
@@ -559,6 +571,8 @@ let itms = 6; // itemsPerPage
 let stpg = 1; // startPage
 let pltd = 4; // pageLinksToDisplay
 let winw = window.innerWidth;
+import bg from "../static/Images/Waves.jpg";
+
 
 function optionsByWindowSize() {
   winw = window.innerWidth;
@@ -592,16 +606,83 @@ function reportWindowSize() {
 document.onreadystatechange = reportWindowSize;
 window.onresize = reportWindowSize;
 
-// ----------------------------------------------------- Section 5 ----------------------------------------------
-var swiper = new Swiper(".swiper", {
-  navigation: {
-    nextEl: ".button-next",
-    prevEl: ".button-prev",
-  },
-  effect: "slide",
-  speed: 900,
-  loop: true,
+
+const container = document.querySelector('section .three_bg');
+
+const loader = new THREE.TextureLoader();
+
+const scene2 = new THREE.Scene();
+const camera2 = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer2 = new THREE.WebGL1Renderer({
+  alpha: true
 });
+
+renderer2.setSize(window.innerWidth, window.innerHeight);
+container.appendChild(renderer2.domElement);
+
+const sizes = {
+  width: window.innerWidth,
+  height: window.innerHeight,
+};
+
+window.addEventListener("resize", () => {
+  sizes.width = window.innerWidth;
+  sizes.height = window.innerHeight;
+  camera2.aspect = sizes.width / sizes.height;
+  camera2.updateProjectionMatrix();
+  renderer2.setSize(window.innerWidth, window.innerHeight);
+  renderer2.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+});
+
+const geometry2 = new THREE.PlaneGeometry(15, 8, 15, 9);
+const material2 = new THREE.MeshBasicMaterial({
+  map: loader.load(bg)
+});
+
+const mesh = new THREE.Mesh(geometry2, material2);
+scene2.add(mesh);
+camera2.position.z = 5;
+
+const count = geometry2.attributes.position.count;
+
+const clock = new THREE.Clock();
+
+
+function animate2() {
+  const time = clock.getElapsedTime();
+
+  for (let i = 0; i < count; i++) {
+    const x = geometry2.attributes.position.getX(i);
+    const y = geometry2.attributes.position.getY(i);
+
+    const anim = 0.25 * Math.sin(x + time * 0.7);
+
+    geometry2.attributes.position.setZ(i, anim);
+    geometry2.computeVertexNormals();
+    geometry2.attributes.position.needsUpdate = true;
+  }
+
+  requestAnimationFrame(animate2);
+  renderer2.render(scene2, camera2);
+}
+
+animate2();
+
+
+// ----------------------------------------------------- Section 5 ----------------------------------------------
+var mySwiper = new Swiper(".swiper-container", {
+  direction: "vertical",
+  loop: true,
+  pagination: ".swiper-pagination",
+  grabCursor: true,
+  speed: 1000,
+  paginationClickable: true,
+  parallax: true,
+  autoplay: false,
+  effect: "slide",
+  mousewheelControl: 1
+});
+
 
 
 particlesJS('particles-js',
@@ -615,7 +696,7 @@ particlesJS('particles-js',
         },
       },
       color: {
-        value: "#f0c394",
+        value: "#00bcd4",
       },
       opacity: {
         value: 0.4,
@@ -662,3 +743,34 @@ particlesJS('particles-js',
     retina_detect: true,
   }
 );
+
+
+// ----------------------------------------------------- Section 6 ----------------------------------------------
+
+
+var cont = document.querySelector('.cont');
+var elsArr = Array.from(document.querySelectorAll('.el'));
+var closeBtnsArr = Array.from(document.querySelectorAll('.el__close-btn'));
+
+setTimeout(function() {
+  cont.classList.remove('s--inactive');
+}, 200);
+
+elsArr.forEach(function(el) {
+  el.addEventListener('click', function() {
+    if (this.classList.contains('s--active')) return;
+    cont.classList.add('s--el-active');
+    this.classList.add('s--active');
+  });
+});
+
+closeBtnsArr.forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    cont.classList.remove('s--el-active');
+    document.querySelector('.el.s--active').classList.remove('s--active');
+  });
+});
+
+
+
