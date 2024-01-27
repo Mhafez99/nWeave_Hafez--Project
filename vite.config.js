@@ -9,7 +9,7 @@ export default {
     server:
     {
         host: true,
-        open: !isCodeSandbox // Open if it's not a CodeSandbox
+        open: !isCodeSandbox
     },
     build:
     {
@@ -17,10 +17,7 @@ export default {
         emptyOutDir: true,
         sourcemap: true,
         // rollupOptions: {
-        //     external: [
-        //         'src/particles.js-master/particles.min.js',
-        //         'src/purePajinate-master/purePajinate.min.js',
-        //     ]
+        //     external: [ './src/particles.js-master/particles.min.js' ]
         // },
     },
     plugins:
