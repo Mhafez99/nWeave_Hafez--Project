@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import gsap from "gsap";
-import {ScrollTrigger} from "gsap/ScrollTrigger";
 import Swiper from 'swiper';
+import purePajinate from './purePajinate-master/purePajinate.js';
+
 /** --------------------------------------------------- Canvas ---------------------------------------------------*/
 
 let renderer, scene, camera;

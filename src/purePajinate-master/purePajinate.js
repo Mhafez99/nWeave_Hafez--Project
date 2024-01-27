@@ -6,7 +6,7 @@
  * @license	GNU General Public License version 3 or later; see LICENSE.txt
  */
 
-class purePajinate {
+export default class purePajinate {
 	constructor(options) {
 		this.config = {
 			containerSelector: '.items',
@@ -31,8 +31,8 @@ class purePajinate {
 			defaultClass: '',
 			activeClass: "active",
 			disabledClass: "disabled",
-			onInit: function onInit() { },
-			onPageDisplayed: function onPageDisplayed() { }
+			onInit: function onInit() {},
+			onPageDisplayed: function onPageDisplayed() {}
 		};
 		if (typeof options !== "undefined") {
 			var userSettings = options;
@@ -105,7 +105,7 @@ class purePajinate {
 		}
 		navigation_html += '</ul>';
 		/* Iterate through all pagination blocks */
-		this.config.pagination_containers.forEach(function (el) {
+		this.config.pagination_containers.forEach(function(el) {
 			el.innerHTML = navigation_html;
 			/* Show a subset of page links */
 			var page_links = el.querySelectorAll('.page_link');
@@ -115,58 +115,58 @@ class purePajinate {
 				}
 			}
 			/* Hide the more/less indicators */
-			el.querySelectorAll('.ellipse').forEach(function (ellipses) {
+			el.querySelectorAll('.ellipse').forEach(function(ellipses) {
 				ellipses.style.display = 'none';
 			});
 			/* Set the active page link styling */
 			if (page_links.length > 0) {
-            	var first_page = page_links[0];
-            	first_page.classList.add('active_page');
-            	first_page.classList.add(this.config.activeClass);
-            }
+				var first_page = page_links[0];
+				first_page.classList.add('active_page');
+				first_page.classList.add(this.config.activeClass);
+			}
 			this.total_page_no_links = page_links.length;
 			this.config.pageLinksToDisplay = Math.min(this.config.pageLinksToDisplay, this.total_page_no_links);
 			const that = this; /* avoids bind(this) in function(e) { }.bind(this) */
 			if (this.config.showFirstLast) {
 				/* Event handler for 'First' link */
-				el.querySelector('.first_link').addEventListener('click', function (e) {
+				el.querySelector('.first_link').addEventListener('click', function(e) {
 					e.preventDefault();
 					that.showFirstPage(el);
-				});			
+				});
 				/* Event handler for 'Last' link */
-				el.querySelector('.last_link').addEventListener('click', function (e) {
+				el.querySelector('.last_link').addEventListener('click', function(e) {
 					e.preventDefault();
 					that.showLastPage(el);
 				});
 			}
 			if (this.config.showPrevNext) {
 				/* Event handler for 'Prev' link */
-				el.querySelector('.previous_link').addEventListener('click', function (e) {
+				el.querySelector('.previous_link').addEventListener('click', function(e) {
 					e.preventDefault();
 					that.showPrevPage(el);
 				});
-				
-				el.querySelector('.previous_link').addEventListener('keydown', function (e) {
+
+				el.querySelector('.previous_link').addEventListener('keydown', function(e) {
 					if (e.keyCode == 37) {
 						this.click();
 					}
 				});
-				
+
 				/* Event handler for 'Next' link */
-				el.querySelector('.next_link').addEventListener('click', function (e) {
+				el.querySelector('.next_link').addEventListener('click', function(e) {
 					e.preventDefault();
 					that.showNextPage(el);
 				});
-				
-				el.querySelector('.next_link').addEventListener('keydown', function (e) {
+
+				el.querySelector('.next_link').addEventListener('keydown', function(e) {
 					if (e.keyCode == 39) {
 						this.click();
 					}
 				});
 			}
 			/* Event handler for each 'Page' link */
-			el.querySelectorAll('.page_link').forEach(function (page) {
-				page.addEventListener('click', function (e) {
+			el.querySelectorAll('.page_link').forEach(function(page) {
+				page.addEventListener('click', function(e) {
 					e.preventDefault();
 					that.gotopage(page.getAttribute('longdesc'));
 				});
@@ -228,14 +228,14 @@ class purePajinate {
 			}
 			else {
 				items[i].style.display = 'inline-block';
-				setTimeout(function () {
+				setTimeout(function() {
 					items[i].classList.remove('hidden');
 					items[i].classList.add('visible');
 				}, 20);
 			}
 		}
 		/* Reassign the active class */
-		this.config.pagination_containers.forEach(function (el) {
+		this.config.pagination_containers.forEach(function(el) {
 			var page_links = el.querySelectorAll('.page_link');
 			for (let i = 0; i < page_links.length; i++) {
 				if (page_links[i].getAttribute('longdesc') == page_num) {
@@ -260,9 +260,9 @@ class purePajinate {
 	}
 	movePageNumbersLeft(e, new_p) {
 		var new_page = new_p;
-		e.parentNode.querySelectorAll('.page_link').forEach(function (el) {
+		e.parentNode.querySelectorAll('.page_link').forEach(function(el) {
 			if (el.getAttribute('longdesc') == new_page && !el.classList.contains('active_page') && el.style.display == 'none') {
-				this.config.pagination_containers.forEach(function (el) {
+				this.config.pagination_containers.forEach(function(el) {
 					var page_links = el.querySelectorAll('.page_link');
 					for (let i = 0; i < page_links.length; i++) {
 						if (i < new_page + 1 && i >= parseInt(new_page - this.config.pageLinksToDisplay + 1)) {
@@ -278,9 +278,9 @@ class purePajinate {
 	}
 	movePageNumbersRight(e, new_p) {
 		var new_page = new_p;
-		e.parentNode.querySelectorAll('.page_link').forEach(function (el) {
+		e.parentNode.querySelectorAll('.page_link').forEach(function(el) {
 			if (el.getAttribute('longdesc') == new_page && !el.classList.contains('active_page') && el.style.display == 'none') {
-				this.config.pagination_containers.forEach(function (el) {
+				this.config.pagination_containers.forEach(function(el) {
 					var page_links = el.querySelectorAll('.page_link');
 					for (let i = 0; i < page_links.length; i++) {
 						if (i < new_page + parseInt(this.config.pageLinksToDisplay) && i >= new_page) {
@@ -295,7 +295,7 @@ class purePajinate {
 		}, this);
 	}
 	toggleMoreLess() {
-		this.config.pagination_containers.forEach(function (container) {
+		this.config.pagination_containers.forEach(function(container) {
 			var more = container.querySelector('.more');
 			if (more != null) {
 				more.style.display = 'none';
@@ -313,7 +313,7 @@ class purePajinate {
 		}, this);
 	}
 	tagNextPrev() {
-		this.config.pagination_containers.forEach(function (container) {
+		this.config.pagination_containers.forEach(function(container) {
 			var next = container.querySelector('.next_link');
 			var previous = container.querySelector('.previous_link');
 			var first = container.querySelector('.first_link');
